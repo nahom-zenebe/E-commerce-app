@@ -59,5 +59,6 @@ dist/
 
 # Package Lock
 package-lock.json*
+package.json
 yarn.lock
 pnpm-lock.yaml
