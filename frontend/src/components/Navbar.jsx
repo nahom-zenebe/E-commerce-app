@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from '../images/Screenshot 2024-12-01 at 2.31.03 PM.png';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
   return (
@@ -13,11 +14,9 @@ function Navbar() {
         
         <nav >
           <ul className='flex justify-around items-center'>
-            <li className='ml-16 text-white font-semibold text-lg transition-all duration-300 hover:text-yellow-300 hover:scale-105'>About</li>
-            <li className='ml-16 text-white font-semibold text-lg transition-all duration-300 hover:text-yellow-300 hover:scale-105'>Service</li>
-            <li className='ml-16 text-white font-semibold text-lg transition-all duration-300 hover:text-yellow-300 hover:scale-105'>Contact</li>
-            <li className='ml-16 text-white font-semibold text-lg transition-all duration-300 hover:text-yellow-300 hover:scale-105'>Signup</li>
-            <li className='ml-16 text-white font-semibold text-lg transition-all duration-300 hover:text-yellow-300 hover:scale-105'>Login</li>
+            <li className='ml-16 text-white font-semibold text-lg transition-all duration-300 hover:text-yellow-300 hover:scale-105'><Link to='/'>Home</Link></li>
+            <li className='ml-16 text-white font-semibold text-lg transition-all duration-300 hover:text-yellow-300 hover:scale-105'><Link to='/signup'>Signup</Link></li>
+            <li className='ml-16 text-white font-semibold text-lg transition-all duration-300 hover:text-yellow-300 hover:scale-105'><Link to='/login'>Login</Link></li>
           </ul>
         </nav>
       </div>

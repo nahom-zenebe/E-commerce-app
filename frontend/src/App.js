@@ -2,18 +2,29 @@ import Navbar from "./components/Navbar";
 import Home from './components/Home'
 import AboutUs from "./components/Aboutus";
 import Service from "./components/Serveice";
+import Login from './pages/Login'
 import Footer from "./components/Footer";
+import { BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
 import SignUp from "./pages/Signup";
+import toast, { Toaster } from 'react-hot-toast';
 function App() {
   return (
-    <div className="w-full h-screen bg-[#dadcdd] mt-0"> 
-      <Navbar />
+    <Router className="w-full h-screen bg-[#dadcdd] mt-0"> 
+      
+      <Routes>
+        <Route path="/" element={<>
+        <Navbar />
       <Home/>
       <AboutUs/>
       <Service/>
       <Footer/>
-    
-    </div>
+        </>}/>
+        <Route path="/signup" element={<SignUp/>}/>
+        <Route path="/login" element={<Login/>}/>
+      </Routes>
+
+      <Toaster />
+    </Router>
   );
 }
 

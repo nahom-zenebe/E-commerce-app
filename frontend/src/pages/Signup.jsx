@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-
+import Navbar from '../components/Navbar';
+import { useNavigate,Link } from 'react-router-dom';
 function SignUp() {
+  const navigate=useNavigate()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,7 +23,7 @@ function SignUp() {
     try {
       const reponse=await fetch('http://localhost:5001/api/auth/signup',{
         method:'POST',
-        header:{
+        headers:{
           'Content-Type': 'application/json', 
         },
         body: JSON.stringify({ name, email, password }),
@@ -29,8 +31,8 @@ function SignUp() {
     
       })
       const data = await reponse.json(); 
-     if(data.success){
-   
+     if(data.status){
+             navigate('/')
       console.log('Sign-up successful:', data);
       
 
@@ -47,7 +49,8 @@ function SignUp() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="bg-white w-full max-w-md p-8 rounded-lg shadow-md">
+            <Navbar />
+      <div className="bg-white w-full max-w-md p-8 rounded-lg shadow-md mt-16">
     
         <h1 className="text-3xl font-bold text-blue-600 text-center mb-8">Market Hub</h1>
 
@@ -119,9 +122,9 @@ function SignUp() {
         <div className="mt-4 text-center">
           <p className="text-sm text-gray-600">
             Already have an account?{' '}
-            <a href="/login" className="text-blue-600 hover:underline">
+            <Link to="/login" className="text-blue-600 hover:underline">
               Login here
-            </a>
+            </Link>
           </p>
         </div>
       </div>
