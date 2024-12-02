@@ -107,7 +107,7 @@ module.exports.logout=async(req,res)=>{
 
 
     try {
-        res.cookie('ecoapp','')
+        res.cookie('ecoapp','',{maxAge:0})
         res.status(200).json({ message: 'Logged out successfully' });
         
     } catch (error) {

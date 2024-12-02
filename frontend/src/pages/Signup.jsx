@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer'
 import { useNavigate,Link } from 'react-router-dom';
 function SignUp() {
   const navigate=useNavigate()
@@ -48,6 +49,7 @@ function SignUp() {
   };
 
   return (
+    <div>
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
             <Navbar />
       <div className="bg-white w-full max-w-md p-8 rounded-lg shadow-md mt-16">
@@ -128,6 +130,9 @@ function SignUp() {
           </p>
         </div>
       </div>
+   
+    </div>
+    <Footer/>
     </div>
   );
 }

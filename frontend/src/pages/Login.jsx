@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import { useNavigate,Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer'
 
 function Login() {
   const navigate=useNavigate()
@@ -49,6 +50,7 @@ function Login() {
   };
 
   return (
+    <div>
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
             <Navbar />
       <div className="bg-white w-full max-w-md p-8 rounded-lg shadow-md mt-16">
@@ -107,6 +109,9 @@ function Login() {
 
       
       </div>
+
+    </div>
+    <Footer/>
     </div>
     )
 }
