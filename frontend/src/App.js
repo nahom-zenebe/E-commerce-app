@@ -3,6 +3,7 @@ import Home from './components/Home'
 import AboutUs from "./components/Aboutus";
 import Service from "./components/Serveice";
 import Login from './pages/Login'
+import Market from "./pages/Market";
 import Footer from "./components/Footer";
 import { BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
 import SignUp from "./pages/Signup";
@@ -21,6 +22,7 @@ function App() {
         </>}/>
         <Route path="/signup" element={<SignUp/>}/>
         <Route path="/login" element={<Login/>}/>
+        <Route path="/market" element={<Market/>}/>
       </Routes>
 
       <Toaster />
