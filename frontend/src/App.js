@@ -5,6 +5,7 @@ import Service from "./components/Serveice";
 import Login from './pages/Login'
 import Market from "./pages/Market";
 import Footer from "./components/Footer";
+import Cart from "./pages/Cart";
 import { BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
 import SignUp from "./pages/Signup";
 import toast, { Toaster } from 'react-hot-toast';
@@ -23,6 +24,7 @@ function App() {
         <Route path="/signup" element={<SignUp/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/market" element={<Market/>}/>
+        <Route path="/cart" element={<Cart/>}/>
       </Routes>
 
       <Toaster />

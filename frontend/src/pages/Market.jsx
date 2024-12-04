@@ -3,6 +3,7 @@ import {  useSelector,useDispatch } from 'react-redux'
 import {  addItem } from '../features/cartSlice';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer'
+import { Loader } from 'lucide-react';
 function Market() {
   const dispatch=useDispatch()
   const[products,setproducts]=useState([])
@@ -10,6 +11,7 @@ function Market() {
 
 
 useEffect(()=>{
+  setloading(true)
 
 
   const fetchProducts = async () => {
@@ -20,12 +22,24 @@ useEffect(()=>{
     } catch (error) {
       console.error('Error loading products:', error);
     }
+    finally{
+      setloading(false)
+
+    }
   };
 
   fetchProducts(); // Call the async function
 
 
 },[])
+
+
+ if(loading){
+  return ( <div className="flex justify-center items-center min-h-screen">
+    <Loader className="animate-spin h-16 w-16 text-blue-500" />
+  </div>)
+
+ }
 
 const handleAddToCart = (product) => {
   dispatch( addItem(product));
@@ -36,23 +50,38 @@ const handleAddToCart = (product) => {
   return (
     <>
     <Navbar/>
+    <div className='mt-64 mb-20'>
     <div className='mt-64'>
-     
-      <div className='grid grid-cols-3 ml-36  text-center'>
-        {products.map((product) => (
-          <div className='hover:shadow-2xl border-2 border-blue-600 w-72 h-5/6 rounded-lg' key={product.id}>
-            <img  className='w-32 h-44 ml-16 mt-5 mb-10' src={product.image} alt={product.title}/>
-            <hr className='bg-blue-800'></hr>
-            <div className='h-16'>
-            <h3 className='mt-4 text-blue-600'>{product.title}</h3>
-           
-            <p className='w-72 text-blue-600'>${product.price}</p>
-            </div>
-            <button className='border-2 w-32 rounded-lg border-blue-600 bg-blue-600 text-white mr-5 mt-16 hover:bg-blue-800 hover:border-blue-800 h-10 mb-10' onClick={() => handleAddToCart(product)}>Add to Cart</button>
-            <button className='border-2 w-32 rounded-lg border-blue-600 bg-blue-600 text-white mb-24 hover:bg-blue-800 hover:border-blue-800 h-10' onClick={() => handleAddToCart(product)}>Review product</button>
-          </div>
-        ))}
+  <div className='grid grid-cols-1 md:grid-cols-3 gap-6 ml-36 text-center'>
+    {products.map((product) => (
+      <div className='hover:shadow-2xl border-2 border-gray-700 w-72 h-auto rounded-lg text-white bg-gray-800 transition-all duration-300' key={product.id}>
+        
+
+        <div className='bg-white p-5 rounded-lg'>
+          <img className='w-32 h-44 mx-auto mb-5' src={product.image} alt={product.title}/>
+        </div>
+
+        <hr className='bg-blue-600 mb-4'/>
+
+        <div className='h-16'>
+          <h3 className='mt-4 text-blue-500'>{product.title}</h3>
+          <p className='w-72 text-gray-600'>${product.price}</p>
+        </div>
+
+  
+        <button onClick={()=>handleAddToCart(product)} className='border-2 w-32  rounded-lg border-blue-600 bg-blue-600 text-white mr-5 mt-20 hover:bg-blue-700 hover:border-blue-700 h-10 mb-5 transition duration-200'>
+          Add to Cart
+        </button>
+
+
+        <button className='border-2 w-32 rounded-lg border-gray-600 bg-gray-700 text-white mb-5 hover:bg-gray-600 hover:border-gray-500 h-10 transition duration-200'>
+          Review Product
+        </button>
       </div>
+    ))}
+  </div>
+</div>
+
     </div>
     <Footer/>
     </>

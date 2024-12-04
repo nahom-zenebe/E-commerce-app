@@ -33,7 +33,7 @@ function SignUp() {
       })
       const data = await reponse.json(); 
      if(data.status){
-             navigate('/')
+             navigate('/market')
       console.log('Sign-up successful:', data);
       
 
