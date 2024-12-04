@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import toast from 'react-hot-toast';
 import { removeItem, incrementItem, decrementItem} from '../features/cartSlice';
 import {  useSelector,useDispatch } from 'react-redux';
 function Cart() {
@@ -22,6 +23,7 @@ function Cart() {
     
       const handleRemove = (product) => {
         dispatch(removeItem(product.id)); 
+        toast.error("remove from the cart")
       };
 
       
@@ -52,10 +54,13 @@ function Cart() {
         <h3 className="text-lg font-semibold text-blue-600 truncate">
           {product.title}
         </h3>
+        <p className="text-gray-700 font-medium mt-2">
+          Quantity: {product.quntaity}
+        </p>
         <p className="text-gray-500 mt-2 text-sm">${product.price.toFixed(2)}</p>
        
 
-        {/* Action Buttons */}
+      
         <div className="flex justify-center mt-4 space-x-3">
           <button onClick={() => handleIncrement(product)} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200">
             +
@@ -77,6 +82,12 @@ function Cart() {
  <p className="text-gray-700 font-medium mt-3 mb-20 text-center text-4xl">
           Total: ${totalAmount.toFixed(2)}
         </p>
+
+        <div className="flex justify-center items-center mt-8">
+  <button className='border-2 border-blue-700 bg-white text-blue-700 w-72 h-12 rounded-lg hover:bg-blue-700 hover:text-white'>
+    Check out
+  </button>
+  </div>
    
 
 

@@ -1,7 +1,8 @@
 import React,{useState} from 'react'
 import { useNavigate,Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer'
+import Footer from '../components/Footer';
+import toast from 'react-hot-toast';
 
 function Login() {
   const navigate=useNavigate()
@@ -35,13 +36,13 @@ function Login() {
       const data = await reponse.json(); 
      if(data.status){
       navigate('/market')
-      console.log('Sign-up successful:', data);
+      toast.success("login successfully")
       
 
      }
       
     } catch (error) {
-      alert("there is error in logging")
+      toast.error(error.response.data.message)
       
     }
 

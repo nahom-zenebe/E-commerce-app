@@ -2,20 +2,31 @@ import React, { useState } from 'react';
 import logo from '../images/Screenshot 2024-12-01 at 2.31.03 PM.png';
 import { Link } from 'react-router-dom';
 import { useNavigate} from 'react-router-dom';
+import toast from 'react-hot-toast';
 function Navbar() {
     const navigate=useNavigate()
   const handlelogout=async()=>{
-    await fetch('http://localhost:5001/api/auth/logout',{
-      method:'POST',
-      headers:{
-        'Content-Type': 'application/json', 
-      },
-      credentials: 'include', 
-  
-    })
 
-    navigate('/signup')
+    try {
+      await fetch('http://localhost:5001/api/auth/logout',{
+        method:'POST',
+        headers:{
+          'Content-Type': 'application/json', 
+        },
+        credentials: 'include', 
     
+      })
+  
+      navigate('/signup')
+      toast.success("logout successfully")
+    
+      
+      
+    } catch (error) {
+      toast.error(error.response.data.message)
+      
+    }
+   
 
   }
 

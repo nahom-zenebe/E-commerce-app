@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer'
 import { useNavigate,Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 function SignUp() {
   const navigate=useNavigate()
   const [formData, setFormData] = useState({
@@ -34,13 +35,14 @@ function SignUp() {
       const data = await reponse.json(); 
      if(data.status){
              navigate('/market')
-      console.log('Sign-up successful:', data);
+             toast.success("signup successfully")
       
 
      }
       
     } catch (error) {
-      alert("there is error in logging")
+   
+     toast.error(error.reponse.data.message)
       
     }
 

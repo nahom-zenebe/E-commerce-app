@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {  useSelector,useDispatch } from 'react-redux'
 import {  addItem } from '../features/cartSlice';
+import toast from 'react-hot-toast';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer'
 import { Loader } from 'lucide-react';
@@ -28,7 +29,7 @@ useEffect(()=>{
     }
   };
 
-  fetchProducts(); // Call the async function
+  fetchProducts(); 
 
 
 },[])
@@ -43,6 +44,7 @@ useEffect(()=>{
 
 const handleAddToCart = (product) => {
   dispatch( addItem(product));
+  toast.success("add to cart")
 };
 
 
