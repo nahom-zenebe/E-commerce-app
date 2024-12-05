@@ -3,7 +3,9 @@ import logo from '../images/Screenshot 2024-12-01 at 2.31.03 PM.png';
 import { Link } from 'react-router-dom';
 import { useNavigate} from 'react-router-dom';
 import toast from 'react-hot-toast';
+import {  useSelector,useDispatch } from 'react-redux';
 function Navbar() {
+  const items=useSelector((state) => state.cart.items);
     const navigate=useNavigate()
   const handlelogout=async()=>{
 
@@ -51,6 +53,7 @@ function Navbar() {
           </ul>
         </nav>
       </div>
+      <span className='absolute top-5 right-72 text-white bg-red-500 rounded-full w-4 text-center'>{items.length}</span>
     </div>
   );
 }

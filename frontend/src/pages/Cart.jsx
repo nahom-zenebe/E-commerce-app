@@ -10,6 +10,8 @@ function Cart() {
     const items=useSelector((state) => state.cart.items);
     const totalAmount=useSelector((state)=>state.cart.totalAmount)
 
+    console.log('Items:', items); // Debugging
+
 
 
 

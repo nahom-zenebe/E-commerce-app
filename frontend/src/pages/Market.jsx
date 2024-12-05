@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer'
 import { Loader } from 'lucide-react';
+import { Link } from 'react-router-dom';
 function Market() {
   const dispatch=useDispatch()
   const[products,setproducts]=useState([])
@@ -76,9 +77,9 @@ const handleAddToCart = (product) => {
         </button>
 
 
-        <button className='border-2 w-32 rounded-lg border-gray-600 bg-gray-700 text-white mb-5 hover:bg-gray-600 hover:border-gray-500 h-10 transition duration-200'>
+        <Link key={product.id} to={`/market/${product.id}`}> <button className='border-2 w-32 rounded-lg border-gray-600 bg-gray-700 text-white mb-5 hover:bg-gray-600 hover:border-gray-500 h-10 transition duration-200'>
           Review Product
-        </button>
+        </button></Link>
       </div>
     ))}
   </div>
