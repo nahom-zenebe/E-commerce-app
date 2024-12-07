@@ -9,8 +9,13 @@ import DetailProduct from './pages/DetailProduct'
 import Cart from "./pages/Cart";
 import { BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
 import SignUp from "./pages/Signup";
+import CheckoutForm from './pages/CheckoutForm'
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import toast, { Toaster } from 'react-hot-toast';
 function App() {
+  const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+  
   return (
     <Router className="w-full h-screen bg-[#dadcdd] mt-0"> 
       
@@ -26,8 +31,14 @@ function App() {
         <Route path="login" element={<Login/>}/>
         <Route path="market" element={<Market/>}/>
         <Route path="market/:ProductId" element={<DetailProduct/>}/>
-        
         <Route path="/cart" element={<Cart/>}/>
+       
+        <Route path="/checkoutfrom" element={
+            <Elements stripe={stripePromise}>
+              <CheckoutForm />
+            </Elements>
+          }/>
+
       </Routes>
 
       <Toaster />
