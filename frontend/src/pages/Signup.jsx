@@ -2,8 +2,13 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer'
 import { useNavigate,Link } from 'react-router-dom';
+import { loginStart, loginSuccess, loginFailure } from '../features/AuthSlice'
+import {  useSelector,useDispatch } from 'react-redux';
+
 import toast from 'react-hot-toast';
+
 function SignUp() {
+  const dispatch=useDispatch()
   const navigate=useNavigate()
   const [formData, setFormData] = useState({
     name: '',
@@ -23,6 +28,7 @@ function SignUp() {
     e.preventDefault();
     const { name, email, password } = formData;
     try {
+  
       const reponse=await fetch('http://localhost:5001/api/auth/signup',{
         method:'POST',
         headers:{
@@ -33,6 +39,7 @@ function SignUp() {
     
       })
       const data = await reponse.json(); 
+      dispatch(loginSuccess({ user: data.user.email, token: data.token }));
      if(data.status){
              navigate('/market')
              toast.success("signup successfully")

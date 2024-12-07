@@ -87,7 +87,7 @@ function Cart() {
         </p>
 
         <div className="flex justify-center items-center mt-8">
- <Link to='/checkoutform'> <button className='border-2 border-blue-700 bg-white text-blue-700 w-72 h-12 rounded-lg hover:bg-blue-700 hover:text-white'>
+ <Link to='/checkoutfrom'> <button className='border-2 border-blue-700 bg-white text-blue-700 w-72 h-12 rounded-lg hover:bg-blue-700 hover:text-white'>
     Check out
   </button></Link>
   </div>

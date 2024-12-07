@@ -4,9 +4,14 @@ import { Link } from 'react-router-dom';
 import { useNavigate} from 'react-router-dom';
 import toast from 'react-hot-toast';
 import {  useSelector,useDispatch } from 'react-redux';
+import { loginStart, loginSuccess, loginFailure } from '../features/AuthSlice'
 function Navbar() {
   const items=useSelector((state) => state.cart.items);
-    const navigate=useNavigate()
+
+  const isAuthenticated = useSelector((state) => state.auth?.isAuthenticated || false);
+  const user= useSelector((state) => state.auth?.user);
+  const dispatch=useDispatch()
+  const navigate=useNavigate()
   const handlelogout=async()=>{
 
     try {
@@ -18,7 +23,7 @@ function Navbar() {
         credentials: 'include', 
     
       })
-  
+      dispatch(loginSuccess({user:''}))
       navigate('/signup')
       toast.success("logout successfully")
     
@@ -44,10 +49,10 @@ function Navbar() {
         <nav >
           <ul className='flex justify-around items-center'>
             <li className='ml-16 text-white font-semibold text-lg transition-all duration-300 hover:text-yellow-300 hover:scale-105'><Link to='/'>Home</Link></li>
-            <li className='ml-16 text-white font-semibold text-lg transition-all duration-300 hover:text-yellow-300 hover:scale-105'><Link to='/signup'>Signup</Link></li>
-            <li className='ml-16 text-white font-semibold text-lg transition-all duration-300 hover:text-yellow-300 hover:scale-105'><Link to='/login'>Login</Link></li>
-            <li className='ml-16 text-white font-semibold text-lg transition-all duration-300 hover:text-yellow-300 hover:scale-105'><Link to='/market'>Market</Link></li>
-            <li className='ml-16 text-white font-semibold text-lg transition-all duration-300 hover:text-yellow-300 hover:scale-105'><Link to='/cart'>Cart</Link></li>
+            <li className='ml-16 text-white font-semibold text-lg transition-all duration-300 hover:text-yellow-300 hover:scale-105'>{isAuthenticated?user:<Link to='/signup'>Signup</Link>}</li>
+            <li className='ml-16 text-white font-semibold text-lg transition-all duration-300 hover:text-yellow-300 hover:scale-105'>{isAuthenticated?null:<Link to='/login'>Login</Link>}</li>
+            <li className='ml-16 text-white font-semibold text-lg transition-all duration-300 hover:text-yellow-300 hover:scale-105'>{isAuthenticated?<Link to='/market'>Market</Link>:null}</li>
+            <li className='ml-16 text-white font-semibold text-lg transition-all duration-300 hover:text-yellow-300 hover:scale-105'>{isAuthenticated?<Link to='/cart'>Cart</Link>:null}</li>
             
             <li className='ml-16 text-white font-semibold text-lg transition-all duration-300 hover:text-yellow-300 hover:scale-105'><button onClick={handlelogout} to='/'>Logout</button></li>
           </ul>

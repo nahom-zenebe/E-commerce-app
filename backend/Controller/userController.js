@@ -38,7 +38,8 @@ module.exports.signup=async(req,res)=>{
             user:{
                 _id:newUser._id,
                 name:newUser.name,
-                email:newUser.email
+                email:newUser.email,
+                token:token
             }
         })
 
