@@ -168,7 +168,7 @@ const CheckoutForm = () => {
             type="submit"
             className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium"
           >
-            Pay $50
+            Pay 
           </button>
         </form>
 
