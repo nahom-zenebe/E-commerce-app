@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import CardElement from '../components/CardElement'
+import toast from "react-hot-toast";
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
@@ -48,8 +49,10 @@ useEffect(()=>{
 
     if (error) {
       setPaymentStatus(`Error: ${error.message}`);
+      toast.success(`Error: ${error.message}`)
     } else if (paymentIntent.status === "succeeded") {
       setPaymentStatus("Payment succeeded!");
+      toast.success("Payment succeeded!")
     }
   };
 

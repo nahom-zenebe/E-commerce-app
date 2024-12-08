@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate} from 'react-router-dom';
 import toast from 'react-hot-toast';
 import {  useSelector,useDispatch } from 'react-redux';
-import { loginStart, loginSuccess, loginFailure } from '../features/AuthSlice'
+import { loginSuccess } from '../features/AuthSlice'
 function Navbar() {
   const items=useSelector((state) => state.cart.items);
 
@@ -23,14 +23,17 @@ function Navbar() {
         credentials: 'include', 
     
       })
-      dispatch(loginSuccess({user:''}))
+      dispatch(loginSuccess({user:'' ,isAuthenticated: false}))
+    
+     
       navigate('/signup')
       toast.success("logout successfully")
+
     
       
       
     } catch (error) {
-      toast.error(error.response.data.message)
+      toast.error("error in logout")
       
     }
    
@@ -54,11 +57,12 @@ function Navbar() {
             <li className='ml-16 text-white font-semibold text-lg transition-all duration-300 hover:text-yellow-300 hover:scale-105'>{isAuthenticated?<Link to='/market'>Market</Link>:null}</li>
             <li className='ml-16 text-white font-semibold text-lg transition-all duration-300 hover:text-yellow-300 hover:scale-105'>{isAuthenticated?<Link to='/cart'>Cart</Link>:null}</li>
             
-            <li className='ml-16 text-white font-semibold text-lg transition-all duration-300 hover:text-yellow-300 hover:scale-105'><button onClick={handlelogout} to='/'>Logout</button></li>
+            <li className='ml-16 text-white font-semibold text-lg transition-all duration-300 hover:text-yellow-300 hover:scale-105'>{isAuthenticated?<button onClick={handlelogout} to='/'>Logout</button>:null}</li>
           </ul>
         </nav>
       </div>
-      <span className='absolute top-5 right-72 text-white bg-red-500 rounded-full w-4 text-center'>{items.length}</span>
+      {isAuthenticated?  <span className='absolute top-5 right-64 text-white bg-red-500 rounded-full w-4 text-center'>{items.length}</span>:''}
+    
     </div>
   );
 }

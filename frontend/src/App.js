@@ -31,8 +31,8 @@ function App() {
       <Service/>
       <Footer/>
         </>}/>
-        <Route path="signup" element={<SignUp/>}/>
-        <Route path="login" element={<Login/>}/>
+        <Route path="/signup" element={<SignUp/>}/>
+        <Route path="/login" element={<Login/>}/>
         <Route path="market" element={ <Market/>}/>
         <Route path='*' element={<Pagenotfound />}/>
         <Route path="market/:ProductId" element={ <DetailProduct/>}/>

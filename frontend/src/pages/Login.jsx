@@ -3,8 +3,12 @@ import { useNavigate,Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import toast from 'react-hot-toast';
+import { loginStart, loginSuccess, loginFailure } from '../features/AuthSlice'
+import {  useSelector,useDispatch } from 'react-redux';
+
 
 function Login() {
+  const dispatch=useDispatch()
   const navigate=useNavigate()
   const [formData, setFormData] = useState({
 
@@ -33,7 +37,8 @@ function Login() {
         credentials: 'include', 
     
       })
-      const data = await reponse.json(); 
+      const data = await reponse.json();
+      dispatch(loginSuccess({ user: data.user.email, token: data.token })); 
      if(data.status){
       navigate('/market')
       toast.success("login successfully")
